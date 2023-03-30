@@ -1,12 +1,12 @@
 package main
 
 import (
-        "log"
-        "os/exec"
 	"github.com/hashicorp/go-plugin"
 	"github.com/licairong/try-go-plugin/shared"
+        r "github.com/licairong/avago"
 )
 
+/*
 type PluginService struct{}
 
 func (p PluginService) Hello(name string) (string, error) {
@@ -17,12 +17,13 @@ func (p PluginService) Hello(name string) (string, error) {
 	}
 	return string(out), nil
 }
+*/
 
 func main() {
 	plugin.Serve(&plugin.ServeConfig{
 		HandshakeConfig: shared.Handshake,
 		Plugins: map[string]plugin.Plugin{
-			"PrintPlugin": &shared.GRPCHelloPlugin{Impl: &PluginService{}},
+			"PrintPlugin": &shared.GRPCHelloPlugin{Impl: &r.PluginService{}},
 		},
 		// A non-nil value here enables gRPC serving for this plugin...
 		GRPCServer: plugin.DefaultGRPCServer,
